@@ -1,8 +1,10 @@
 import Link from 'next/link';
 
+import MainLayout from '../components/MainLayout';
+
 const Index = () => {
   return (
-    <>
+    <MainLayout>
       <h1>Hello, NEXT JS</h1>
       <p>
         <Link href='/about'>
@@ -14,7 +16,7 @@ const Index = () => {
           <a>News</a>
         </Link>
       </p>
-    </>
+    </MainLayout>
   );
 };
 
