@@ -8,28 +8,29 @@ const Category = ({ articles }) => {
   const router = useRouter();
   return (
     <MainLayout>
-      <h1>Category {router.query.title}</h1>
-      <p>
-        <Link href='/'>
-          <a>Back to home</a>
-        </Link>
-      </p>
+      <StyledHeading>{router.query.title}</StyledHeading>
 
-      <ul>
+      <Link href='/news'>
+        <MoveBack>&larr; Back to categories</MoveBack>
+      </Link>
+
+      <StyledUl>
         {articles.map((article) => (
-          <li key={article.title}>
-            <Title>{article.title}</Title>
-            <Author>{article.author}</Author>
-            <Content>{article.content}</Content>
-          </li>
+          <StyledLi key={article.title}>
+            <TextWrapper>
+              <Title href={article.url}>{article.title}</Title>
+              <Author>{article.author}</Author>
+              <Content>{article.description}</Content>
+            </TextWrapper>
+            <StyledImg src={article.urlToImage} alt='Image is not provided' />
+          </StyledLi>
         ))}
-      </ul>
+      </StyledUl>
     </MainLayout>
   );
 };
 
 Category.getInitialProps = async (ctx) => {
-  console.log(ctx);
   const response = await fetch(
     `http://newsapi.org/v2/top-headlines?category=${ctx.query.title}&apiKey=545054ab22e9474b82aed84d211dcf1b`
   );
@@ -44,22 +45,64 @@ Category.getInitialProps = async (ctx) => {
       filteredArticles.push(articles[i]);
     }
   }
-
   return {
     articles: filteredArticles,
   };
 };
 
-const Title = styled.h3`
-  color: tomato;
+const StyledHeading = styled.h2`
+  font-size: 2.5rem;
+  margin: 1rem;
+  text-align: center;
+  text-transform: uppercase;
 `;
 
-const Author = styled.h3`
+const MoveBack = styled.a`
+  font-size: 1.5rem;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+const StyledUl = styled.ul`
+  list-style-type: none;
+  padding-left: 0;
+`;
+
+const StyledLi = styled.li`
+  display: flex;
+  justify-content: space-between;
+  border: 5px solid black;
+  border-radius: 5px;
+  margin: 1rem 5rem;
+  padding: 1rem;
+`;
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 3rem;
+`;
+
+const Title = styled.a`
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+`;
+
+const Author = styled.p`
+  font-size: 1.75rem;
   color: navy;
 `;
 
-const Content = styled.h3`
+const Content = styled.p`
+  font-size: 1.5rem;
   color: green;
+`;
+
+const StyledImg = styled.img`
+  align-self: center;
+  height: 200px;
+  width: auto;
 `;
 
 export default Category;
