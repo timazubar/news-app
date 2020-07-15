@@ -1,32 +1,44 @@
 import Link from 'next/link';
+import styled from 'styled-components';
 
 import MainLayout from '../components/MainLayout';
 
-const News = ({ news }) => {
+const News = () => {
+  const categories = [
+    {
+      id: 1,
+      title: 'business',
+    },
+    {
+      id: 2,
+      title: 'science',
+    },
+    {
+      id: 3,
+      title: 'sports',
+    },
+  ];
+
   return (
     <MainLayout>
-      <h1>News Page</h1>
+      <h1>Choose category</h1>
       <p>
         <Link href='/'>
           <a>Back to home</a>
         </Link>
       </p>
-      <pre>{JSON.stringify(news, null, 2)}</pre>
+
+      <ul>
+        {categories.map((category) => (
+          <li key={category.id}>
+            <Link href={`/category/${category.title}`}>
+              <a>{category.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </MainLayout>
   );
-};
-
-News.getInitialProps = async () => {
-  const response = await fetch(
-    'http://newsapi.org/v2/top-headlines?' +
-      'country=us&' +
-      'apiKey=545054ab22e9474b82aed84d211dcf1b'
-  );
-  const news = await response.json();
-
-  return {
-    news,
-  };
 };
 
 export default News;
