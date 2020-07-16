@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import { observable } from 'mobx';
 import styled from 'styled-components';
 
 import MainLayout from '../components/MainLayout';
 
 const News = () => {
-  const categories = [
+  const categories = observable([
     {
       id: 1,
       title: 'business',
@@ -23,7 +24,7 @@ const News = () => {
       imageUrl:
         'https://sportsshow.net/wp-content/uploads/2019/04/Most-Popular-Sports-in-America.jpg',
     },
-  ];
+  ]);
 
   return (
     <MainLayout>

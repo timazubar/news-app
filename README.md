@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+[Link to the deployed version](https://news-app-alpha.vercel.app/)
+
+![alt text](https://github.com/timazubar/news-app/blob/master/preview.png?raw=true)
+
 ## Getting Started
 
 First, run the development server:
