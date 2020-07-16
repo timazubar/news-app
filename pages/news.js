@@ -1,30 +1,12 @@
 import Link from 'next/link';
-import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
 import MainLayout from '../components/MainLayout';
+import UICategoriesStore from '../stores/UICategoriesStore';
 
 const News = () => {
-  const categories = observable([
-    {
-      id: 1,
-      title: 'business',
-      imageUrl:
-        'https://www.kindadusty.com/wp-content/uploads/2016/05/Business-1170x768.jpg',
-    },
-    {
-      id: 2,
-      title: 'science',
-      imageUrl:
-        'https://www.rmit.edu.au/content/dam/rmit/au/en/study-with-us/interest-areas/thumbnails/science-study-area-1220x732.jpg',
-    },
-    {
-      id: 3,
-      title: 'sports',
-      imageUrl:
-        'https://sportsshow.net/wp-content/uploads/2019/04/Most-Popular-Sports-in-America.jpg',
-    },
-  ]);
+  const categories = UICategoriesStore.getCategoriesList();
 
   return (
     <MainLayout>
@@ -95,4 +77,4 @@ const StyledImg = styled.img`
   width: auto;
 `;
 
-export default News;
+export default observer(News);
