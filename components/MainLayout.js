@@ -1,20 +1,13 @@
 import Link from 'next/link';
-import Head from 'next/head';
 
 import styled from 'styled-components';
 
 const MainLayout = ({ children, title = 'Next JS | News App' }) => {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
       <StyledNav>
         <Link href={'/'}>
           <StyledAnchor>Home</StyledAnchor>
-        </Link>
-        <Link href={'/about'}>
-          <StyledAnchor>About</StyledAnchor>
         </Link>
         <Link href={'/news'}>
           <StyledAnchor>News</StyledAnchor>
@@ -38,8 +31,10 @@ const StyledNav = styled.nav`
 `;
 
 const StyledAnchor = styled.a`
+  font-size: 2rem;
   color: white;
   text-decoration: none;
+  text-transform: uppercase;
   cursor: pointer;
 `;
 

@@ -27,12 +27,12 @@ const News = () => {
 
   return (
     <MainLayout>
-      <h1>Choose category</h1>
-      <p>
+      <HeadingWrapper>
         <Link href='/'>
-          <a>Back to home</a>
+          <BackLink>&larr; Back to home</BackLink>
         </Link>
-      </p>
+        <h1>Choose category &#8681;</h1>
+      </HeadingWrapper>
 
       <StyledUl>
         {categories.map((category) => (
@@ -47,6 +47,22 @@ const News = () => {
     </MainLayout>
   );
 };
+
+const HeadingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  width: 55%;
+`;
+
+const BackLink = styled.a`
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+`;
 
 const StyledUl = styled.ul`
   display: flex;

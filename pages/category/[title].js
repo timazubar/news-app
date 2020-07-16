@@ -8,11 +8,12 @@ const Category = ({ articles }) => {
   const router = useRouter();
   return (
     <MainLayout>
-      <StyledHeading>{router.query.title}</StyledHeading>
-
-      <Link href='/news'>
-        <MoveBack>&larr; Back to categories</MoveBack>
-      </Link>
+      <HeadingWrapper>
+        <Link href='/news'>
+          <MoveBack>&larr; Back to categories</MoveBack>
+        </Link>
+        <StyledHeading>{router.query.title}</StyledHeading>
+      </HeadingWrapper>
 
       <StyledUl>
         {articles.map((article) => (
@@ -50,6 +51,14 @@ Category.getInitialProps = async (ctx) => {
   };
 };
 
+const HeadingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  width: 55%;
+`;
+
 const StyledHeading = styled.h2`
   font-size: 2.5rem;
   margin: 1rem;
@@ -58,8 +67,10 @@ const StyledHeading = styled.h2`
 `;
 
 const MoveBack = styled.a`
+  padding: 0.5rem;
   font-size: 1.5rem;
-  text-decoration: underline;
+  background-color: black;
+  color: white;
   cursor: pointer;
 `;
 
