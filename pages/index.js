@@ -14,7 +14,7 @@ const Index = () => {
           <StyledA href={'https://nextjs.org/'}>Next JS</StyledA> and{' '}
           <StyledA href={'https://mobx.js.org/README.html'}>MobX</StyledA>
         </StyledP>
-        <Link href='/news'>
+        <Link href='/categories'>
           <NewsLink>Click here to read some news &#9993;</NewsLink>
         </Link>
       </Wrapper>

@@ -9,7 +9,7 @@ const Category = ({ articles }) => {
   return (
     <MainLayout>
       <HeadingWrapper>
-        <Link href='/news'>
+        <Link href='/categories'>
           <MoveBack>&larr; Back to categories</MoveBack>
         </Link>
         <StyledHeading>{router.query.title}</StyledHeading>
@@ -31,23 +31,11 @@ const Category = ({ articles }) => {
   );
 };
 
-Category.getInitialProps = async (ctx) => {
-  const response = await fetch(
-    `http://newsapi.org/v2/top-headlines?category=${ctx.query.title}&apiKey=545054ab22e9474b82aed84d211dcf1b`
-  );
-  const { articles } = await response.json();
-  const filteredArticles = [];
-
-  for (let i = 0; i < articles.length; i++) {
-    const uniqueArticle = filteredArticles.find(
-      (article) => article.title === articles[i].title
-    );
-    if (!uniqueArticle) {
-      filteredArticles.push(articles[i]);
-    }
-  }
+Category.getInitialProps = async ({ store, query }) => {
+  const { category } = query;
+  await store.FetchCategoryStore.fetchNews(category);
   return {
-    articles: filteredArticles,
+    articles: store.FetchCategoryStore.articles,
   };
 };
 

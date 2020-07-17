@@ -1,31 +1,10 @@
 import Link from 'next/link';
-import { observable } from 'mobx';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
 
-import MainLayout from '../components/MainLayout';
+import MainLayout from '../../components/MainLayout';
 
-const News = () => {
-  const categories = observable([
-    {
-      id: 1,
-      title: 'business',
-      imageUrl:
-        'https://www.kindadusty.com/wp-content/uploads/2016/05/Business-1170x768.jpg',
-    },
-    {
-      id: 2,
-      title: 'science',
-      imageUrl:
-        'https://www.rmit.edu.au/content/dam/rmit/au/en/study-with-us/interest-areas/thumbnails/science-study-area-1220x732.jpg',
-    },
-    {
-      id: 3,
-      title: 'sports',
-      imageUrl:
-        'https://sportsshow.net/wp-content/uploads/2019/04/Most-Popular-Sports-in-America.jpg',
-    },
-  ]);
-
+const Categories = ({ categories }) => {
   return (
     <MainLayout>
       <HeadingWrapper>
@@ -38,7 +17,7 @@ const News = () => {
       <StyledUl>
         {categories.map((category) => (
           <StyledLi key={category.id}>
-            <Link href={`/category/${category.title}`}>
+            <Link href={`/categories/${category.title}`}>
               <StyledLink>{category.title}</StyledLink>
             </Link>
             <StyledImg src={category.imageUrl} />
@@ -47,6 +26,12 @@ const News = () => {
       </StyledUl>
     </MainLayout>
   );
+};
+
+Categories.getInitialProps = ({ store }) => {
+  return {
+    categories: store.UICategoriesStore.categories,
+  };
 };
 
 const HeadingWrapper = styled.div`
@@ -95,4 +80,4 @@ const StyledImg = styled.img`
   width: auto;
 `;
 
-export default News;
+export default observer(Categories);
