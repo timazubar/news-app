@@ -13,24 +13,26 @@ class FetchCategoryStore {
 
   async fetchNews(category) {
     const response = await fetchNewsByCategories(category);
-    return this.fetchArticles(response);
+    this.fetchArticles(response);
   }
 
-  @action fetchArticles(response) {
-    const { articles } = response.json();
-    const filteredArticles = [];
+  @action fetchArticles(articles) {
+    this.articles = articles;
 
-    for (let i = 0; i < articles.length; i++) {
-      const uniqueArticle = filteredArticles.find(
-        (article) => article.title === articles[i].title
-      );
-      if (!uniqueArticle) {
-        filteredArticles.push(articles[i]);
-      }
-    }
-    return {
-      articles: filteredArticles,
-    };
+    // const { articles } = response.json();
+    // const filteredArticles = [];
+
+    // for (let i = 0; i < articles.length; i++) {
+    //   const uniqueArticle = filteredArticles.find(
+    //     (article) => article.title === articles[i].title
+    //   );
+    //   if (!uniqueArticle) {
+    //     filteredArticles.push(articles[i]);
+    //   }
+    // }
+    // return {
+    //   articles: filteredArticles,
+    // };
   }
 }
 

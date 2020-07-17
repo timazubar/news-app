@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 
-const MainLayout = ({ children, title = 'Next JS | News App' }) => {
+const MainLayout = ({ children }) => {
   return (
     <>
       <StyledNav>
         <Link href={'/'}>
           <StyledAnchor>Home</StyledAnchor>
         </Link>
-        <Link href={'/news'}>
+        <Link href={'/categories'}>
           <StyledAnchor>News</StyledAnchor>
         </Link>
       </StyledNav>

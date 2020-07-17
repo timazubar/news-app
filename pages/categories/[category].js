@@ -9,7 +9,7 @@ const Category = ({ articles }) => {
   return (
     <MainLayout>
       <HeadingWrapper>
-        <Link href='/news'>
+        <Link href='/categories'>
           <MoveBack>&larr; Back to categories</MoveBack>
         </Link>
         <StyledHeading>{router.query.title}</StyledHeading>
