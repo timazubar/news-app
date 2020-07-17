@@ -17,22 +17,17 @@ class FetchCategoryStore {
   }
 
   @action fetchArticles(articles) {
-    this.articles = articles;
+    const filteredArticles = [];
 
-    // const { articles } = response.json();
-    // const filteredArticles = [];
-
-    // for (let i = 0; i < articles.length; i++) {
-    //   const uniqueArticle = filteredArticles.find(
-    //     (article) => article.title === articles[i].title
-    //   );
-    //   if (!uniqueArticle) {
-    //     filteredArticles.push(articles[i]);
-    //   }
-    // }
-    // return {
-    //   articles: filteredArticles,
-    // };
+    for (let i = 0; i < articles.length; i++) {
+      const uniqueArticle = filteredArticles.find(
+        (article) => article.title === articles[i].title
+      );
+      if (!uniqueArticle) {
+        filteredArticles.push(articles[i]);
+      }
+    }
+    this.articles = filteredArticles;
   }
 }
 
