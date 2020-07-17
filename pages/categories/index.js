@@ -1,13 +1,10 @@
 import Link from 'next/link';
-import { observer } from 'mobx-react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
 
-import MainLayout from '../components/MainLayout';
-import UICategoriesStore from '../stores/UICategoriesStore';
+import MainLayout from '../../components/MainLayout';
 
-const News = () => {
-  const categories = UICategoriesStore.getCategoriesList();
-
+const Categories = ({ categories }) => {
   return (
     <MainLayout>
       <HeadingWrapper>
@@ -20,7 +17,7 @@ const News = () => {
       <StyledUl>
         {categories.map((category) => (
           <StyledLi key={category.id}>
-            <Link href={`/category/${category.title}`}>
+            <Link href={`/categories/${category.title}`}>
               <StyledLink>{category.title}</StyledLink>
             </Link>
             <StyledImg src={category.imageUrl} />
@@ -29,6 +26,12 @@ const News = () => {
       </StyledUl>
     </MainLayout>
   );
+};
+
+Categories.getInitialProps = ({ store }) => {
+  return {
+    categories: store.UICategoriesStore.categories,
+  };
 };
 
 const HeadingWrapper = styled.div`
@@ -77,4 +80,4 @@ const StyledImg = styled.img`
   width: auto;
 `;
 
-export default observer(News);
+export default observer(Categories);

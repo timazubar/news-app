@@ -1,20 +1,22 @@
 import { action, observable } from 'mobx';
 
+import { fetchNewsByCategories } from '../services/fetchNewsService';
+
 class FetchCategoryStore {
-  @observable category = null;
+  @observable articles = null;
 
-  constructor(initialData = {}) {
-    this.post = initialData.post;
+  endpoint = 'categories';
+
+  constructor() {
+    this.articles = [];
   }
 
-  async getInitialProps(ctx) {
-    const response = await fetch(
-      `http://newsapi.org/v2/top-headlines?category=${ctx.query.title}&apiKey=545054ab22e9474b82aed84d211dcf1b`
-    );
-    this.loadNews(response);
+  async fetchNews(category) {
+    const response = await fetchNewsByCategories(category);
+    return this.fetchArticles(response);
   }
 
-  @action loadNews(response) {
+  @action fetchArticles(response) {
     const { articles } = response.json();
     const filteredArticles = [];
 

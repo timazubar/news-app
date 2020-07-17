@@ -21,10 +21,6 @@ class UICategoriesStore {
         'https://sportsshow.net/wp-content/uploads/2019/04/Most-Popular-Sports-in-America.jpg',
     },
   ];
-
-  @action getCategoriesList() {
-    return this.categories;
-  }
 }
 
 export default UICategoriesStore;

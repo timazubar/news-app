@@ -8,24 +8,20 @@ useStaticRendering(isServer);
 
 let store = null;
 
-export default function initializeStore(
-  initialData = { FetchCategoryStore: {} }
-) {
+const initializeStore = () => {
   if (isServer) {
     return {
-      FetchCategoryStore: new FetchCategoryStore(
-        initialData.FetchCategoryStore
-      ),
+      FetchCategoryStore: new FetchCategoryStore(),
       UICategoriesStore: new UICategoriesStore(),
     };
   }
   if (store === null) {
     store = {
-      FetchCategoryStore: new FetchCategoryStore(
-        initialData.FetchCategoryStore
-      ),
+      FetchCategoryStore: new FetchCategoryStore(),
       UICategoriesStore: new UICategoriesStore(),
     };
   }
   return store;
-}
+};
+
+export default initializeStore;

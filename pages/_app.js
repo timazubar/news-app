@@ -1,4 +1,5 @@
-import App, { Container } from 'next/app';
+import React from 'react';
+import App from 'next/app';
 import Head from 'next/head';
 import { Provider } from 'mobx-react';
 import initializeStore from '../stores';
@@ -29,9 +30,7 @@ class MyApp extends App {
         <Head>
           <title>Next JS | News App</title>
         </Head>
-        <Container>
-          <Component {...pageProps} />
-        </Container>
+        <Component {...pageProps} />
 
         <style jsx global>{`
           body {
