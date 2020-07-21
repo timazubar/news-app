@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import styled from 'styled-components';
 
 const MainLayout = ({ children }) => {
@@ -7,7 +6,7 @@ const MainLayout = ({ children }) => {
     <>
       <StyledNav>
         <Link href={'/'}>
-          <StyledAnchor>Home</StyledAnchor>
+          <StyledAnchor variant='white'>Home</StyledAnchor>
         </Link>
         <Link href={'/categories'}>
           <StyledAnchor>News</StyledAnchor>
@@ -19,6 +18,7 @@ const MainLayout = ({ children }) => {
 };
 
 const StyledNav = styled.nav`
+  z-index: 2;
   position: fixed;
   display: flex;
   justify-content: space-around;
@@ -32,7 +32,6 @@ const StyledNav = styled.nav`
 
 const StyledAnchor = styled.a`
   font-size: 2rem;
-  color: white;
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;

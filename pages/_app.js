@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { Provider } from 'mobx-react';
 import initializeStore from '../stores';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class MyApp extends App {
   static async getInitialProps(appContext) {
     const store = initializeStore();
@@ -35,6 +37,10 @@ class MyApp extends App {
         <style jsx global>{`
           body {
             font-family: 'Roboto', sans-serif;
+            color: black;
+          }
+          nav {
+            color: white;
           }
         `}</style>
       </Provider>

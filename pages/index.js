@@ -1,6 +1,6 @@
+import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import styled from 'styled-components';
-
 import MainLayout from '../components/MainLayout';
 
 const Index = () => {
@@ -15,7 +15,9 @@ const Index = () => {
           <StyledA href={'https://mobx.js.org/README.html'}>MobX</StyledA>
         </StyledP>
         <Link href='/categories'>
-          <NewsLink>Click here to read some news &#9993;</NewsLink>
+          <Button variant='dark' size='lg'>
+            Click here to read some news &#9993;
+          </Button>
         </Link>
       </Wrapper>
     </MainLayout>
@@ -53,8 +55,6 @@ const NewsLink = styled.a`
   font-size: 2rem;
   margin: 1rem;
   padding: 1rem;
-  background-color: black;
-  color: white;
   cursor: pointer;
 `;
 
