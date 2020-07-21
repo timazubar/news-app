@@ -1,18 +1,16 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 
 import MainLayout from '../../components/MainLayout';
 
-const Category = ({ articles }) => {
-  const router = useRouter();
+const Category = ({ articles, category }) => {
   return (
     <MainLayout>
       <HeadingWrapper>
         <Link href='/categories'>
           <MoveBack>&larr; Back to categories</MoveBack>
         </Link>
-        <StyledHeading>{router.query.title}</StyledHeading>
+        <StyledHeading>{category}</StyledHeading>
       </HeadingWrapper>
 
       <StyledUl>
@@ -35,6 +33,7 @@ Category.getInitialProps = async ({ store, query }) => {
   const { category } = query;
   await store.FetchCategoryStore.fetchNews(category);
   return {
+    category,
     articles: store.FetchCategoryStore.articles,
   };
 };
